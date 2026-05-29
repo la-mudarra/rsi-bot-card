@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>SPX Bot Card</title>
     <style>
-        /* ضع هنا محتوى ملف style.css */
         body { 
             margin: 0; padding: 0; height: 100vh; background-color: #0b0e14; 
-            display: flex; justify-content: center; align-items: center; font-family: sans-serif; 
+            display: flex; justify-content: center; align-items: center; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
         }
         .card { 
             background-color: #1a2233; color: white; padding: 25px; width: 400px; 
@@ -24,7 +24,20 @@
             display: flex; justify-content: space-between; background: #111827; 
             padding: 15px; border-radius: 15px; text-align: right;
         }
-        .value { color: #63b3ed; font-size: 20px; font-weight: bold; }
+        /* التعديل لضمان عدم تداخل الأرقام مع العربية */
+        .value { 
+            color: #63b3ed; font-size: 20px; font-weight: bold;
+            display: inline-block;
+            unicode-bidi: isolate; 
+            direction: ltr;
+        }
+        .date-time {
+            display: inline-block;
+            unicode-bidi: isolate;
+            direction: ltr;
+            font-size: 14px;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -37,7 +50,9 @@
         <div class="footer">
             <div style="text-align: right;">
                 <small style="color: #a0aec0;">آخر تحديث</small><br>
-                <strong id="date-value">--</strong> <strong id="time-value">--</strong>
+                <span class="date-time">
+                    <strong id="date-value">--</strong> <strong id="time-value">--</strong>
+                </span>
             </div>
             <div style="text-align: left;">
                 <small style="color: #a0aec0;">RSI قيمة</small><br>
@@ -47,7 +62,6 @@
     </div>
 
     <script>
-        // ضع هنا محتوى ملف script.js
         document.addEventListener("DOMContentLoaded", function() {
             const params = new URLSearchParams(window.location.search);
             const rsi = parseFloat(params.get('rsi') || 50);
