@@ -15,7 +15,12 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
         }
         .header { color: #a0aec0; font-size: 12px; margin-bottom: 10px; }
-        .title { font-size: 24px; font-weight: bold; margin-bottom: 15px; }
+        
+        .title { 
+            font-size: 24px; font-weight: bold; margin-bottom: 15px; 
+            direction: rtl; text-align: center;
+        }
+        
         #status-box { 
             padding: 10px 20px; border-radius: 25px; font-weight: bold; 
             display: inline-block; margin-bottom: 20px; color: #000; 
@@ -24,7 +29,6 @@
             display: flex; justify-content: space-between; background: #111827; 
             padding: 15px; border-radius: 15px; text-align: right;
         }
-        /* التعديل لضمان عدم تداخل الأرقام مع العربية */
         .value { 
             color: #63b3ed; font-size: 20px; font-weight: bold;
             display: inline-block;
@@ -44,7 +48,12 @@
 
     <div class="card">
         <div class="header">بوت مؤشر لحظي</div>
-        <div class="title">SPX مؤشر سهم</div>
+        
+        <div class="title">
+            <span style="display: inline-block;">مؤشر سهم</span> 
+            <span style="display: inline-block; direction: ltr; unicode-bidi: isolate; margin-right: 8px;">SPX</span>
+        </div>
+
         <div id="status-box">...جاري التحليل</div>
         
         <div class="footer">
@@ -54,8 +63,12 @@
                     <strong id="date-value">--</strong> <strong id="time-value">--</strong>
                 </span>
             </div>
-            <div style="text-align: left;">
-                <small style="color: #a0aec0;">RSI قيمة</small><br>
+            
+            <div style="text-align: right;">
+                <small style="color: #a0aec0; display: block;">
+                    <span style="display: inline-block; direction: ltr; margin-left: 5px;">RSI</span> 
+                    <span style="display: inline-block;">قيمة</span>
+                </small>
                 <strong id="rsi-value" class="value">--</strong>
             </div>
         </div>
