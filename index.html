@@ -1,80 +1,47 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>SPX Bot Card</title>
-    <style>
-        /* ضع هنا محتوى ملف style.css */
-        body { 
-            margin: 0; padding: 0; height: 100vh; background-color: #0b0e14; 
-            display: flex; justify-content: center; align-items: center; font-family: sans-serif; 
-        }
-        .card { 
-            background-color: #1a2233; color: white; padding: 25px; width: 400px; 
-            border-radius: 20px; text-align: center; border: 1px solid #334e68; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
-        }
-        .header { color: #a0aec0; font-size: 12px; margin-bottom: 10px; }
-        .title { font-size: 24px; font-weight: bold; margin-bottom: 15px; }
-        #status-box { 
-            padding: 10px 20px; border-radius: 25px; font-weight: bold; 
-            display: inline-block; margin-bottom: 20px; color: #000; 
-        }
-        .footer { 
-            display: flex; justify-content: space-between; background: #111827; 
-            padding: 15px; border-radius: 15px; text-align: right;
-        }
-        .value { color: #63b3ed; font-size: 20px; font-weight: bold; }
-    </style>
-</head>
-<body>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #12141c; /* لون الخلفية */
+    color: white;
+  }
+  .card {
+    background: #1e2530;
+    padding: 20px;
+    border-radius: 15px;
+    width: 350px;
+    text-align: center;
+  }
+  .data-row {
+    display: flex;
+    justify-content: space-between; /* توزيع متساوي للعناصر */
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #333;
+  }
+  .label { color: #888; font-size: 0.9em; }
+  .value { font-weight: bold; color: #ffb703; font-size: 1.2em; }
+</style>
 
-    <div class="card">
-        <div class="header">بوت مؤشر لحظي</div>
-        <div class="title">SPX مؤشر سهم</div>
-        <div id="status-box">...جاري التحليل</div>
-        
-        <div class="footer">
-            <div style="text-align: right;">
-                <small style="color: #a0aec0;">آخر تحديث</small><br>
-                <strong id="date-value">--</strong> <strong id="time-value">--</strong>
-            </div>
-            <div style="text-align: left;">
-                <small style="color: #a0aec0;">RSI قيمة</small><br>
-                <strong id="rsi-value" class="value">--</strong>
-            </div>
-        </div>
-    </div>
+<div class="card">
+  <h2>مؤشر RSI اللحظي</h2>
+  <div class="data-row">
+    <span class="label">قيمة RSI</span>
+    <span class="value" id="rsi-val">0</span>
+  </div>
+  <div class="data-row">
+    <span class="label">آخر تحديث</span>
+    <span class="value" id="time-val">00:00</span>
+  </div>
+</div>
 
-    <script>
-        // ضع هنا محتوى ملف script.js
-        document.addEventListener("DOMContentLoaded", function() {
-            const params = new URLSearchParams(window.location.search);
-            const rsi = parseFloat(params.get('rsi') || 50);
-            const date = params.get('date') || "2026-05-30";
-            const time = params.get('time') || "00:00";
-
-            document.getElementById('rsi-value').innerText = rsi;
-            document.getElementById('date-value').innerText = date;
-            document.getElementById('time-value').innerText = time;
-
-            const statusBox = document.getElementById('status-box');
-            const rsiEl = document.getElementById('rsi-value');
-
-            if (rsi > 70) {
-                statusBox.style.backgroundColor = "#e53e3e";
-                statusBox.innerText = "تشبع شرائي (بيع)";
-                rsiEl.style.color = "#e53e3e";
-            } else if (rsi < 30) {
-                statusBox.style.backgroundColor = "#48bb78";
-                statusBox.innerText = "فرصة شراء";
-                rsiEl.style.color = "#48bb78";
-            } else {
-                statusBox.style.backgroundColor = "#f6ad55";
-                statusBox.innerText = "سوق مستقر";
-                rsiEl.style.color = "#f6ad55";
-            }
-        });
-    </script>
-</body>
-</html>
+<script>
+  // كود بسيط لاستخراج البيانات من الرابط وعرضها
+  const params = new URLSearchParams(window.location.search);
+  document.getElementById('rsi-val').innerText = params.get('rsi');
+  document.getElementById('time-val').innerText = params.get('time');
+</script>
