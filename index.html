@@ -4,8 +4,65 @@
     <meta charset="UTF-8">
     <title>SPX Bot Card</title>
     <style>
-        /* ضع هنا محتوى ملف style.css */
-        body { 
+/* تنسيق الجسم ليكون في المنتصف */
+body {
+    background-color: #1a1d24; /* لون الخلفية الداكن */
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* تنسيق الكرت */
+.card {
+    background-color: #232b38; /* لون خلفية الكرت */
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); /* ظل خفيف للكرت */
+}
+
+/* تنسيق العنوان */
+.card p:first-child {
+    font-size: 0.9em;
+    color: #b0b0b0;
+    margin-bottom: 5px;
+}
+
+/* تنسيق الاسم الرئيسي */
+.card h1 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+/* تنسيق الزر */
+.card button {
+    background-color: #ffb703; /* لون الزر البرتقالي */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+    cursor: default;
+}
+
+/* تنسيق منطقة البيانات */
+.card div {
+    margin-top: 15px;
+    text-align: left; /* جعل البيانات تبدأ من اليسار */
+    padding: 10px;
+    background-color: #1a1d24;
+    border-radius: 10px;
+}
+
+.card div p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}        body { 
             margin: 0; padding: 0; height: 100vh; background-color: #0b0e14; 
             display: flex; justify-content: center; align-items: center; font-family: sans-serif; 
         }
