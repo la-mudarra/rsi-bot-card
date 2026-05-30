@@ -3,43 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        /* دمج الخط محلياً لضمان السرعة القصوى في التحويل */
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        body { margin: 0; background-color: #0b0e14; display: flex; justify-content: center; align-items: center; font-family: sans-serif; height: 100vh; }
         
-        body { 
-            margin: 0; background-color: #0b0e14; 
-            display: flex; justify-content: center; align-items: center; 
-            font-family: 'Cairo', sans-serif; height: 100vh;
-        }
-        
+        /* كرت أفقي: عرض أكبر، ارتفاع أقل */
         .card { 
-            background-color: #1a2233; color: white; padding: 40px 20px 20px 20px; 
-            width: 350px; border-radius: 30px; text-align: center; 
-            border: 2px solid #f6ad55; box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
-            position: relative; margin-top: 50px;
+            background-color: #1a2233; color: white; padding: 20px; 
+            width: 500px; height: 220px; border-radius: 20px; 
+            border: 2px solid #f6ad55; box-shadow: 0 5px 20px rgba(0,0,0,0.5); 
+            display: flex; align-items: center; position: relative;
         }
 
-        /* الشعار البارز */
+        /* الشعار على الجانب */
         .logo-frame {
-            width: 110px; height: 110px; border-radius: 50%;
-            border: 4px solid #f6ad55; margin: -90px auto 15px auto;
-            background: #1a2233; padding: 3px; box-shadow: 0 0 15px rgba(246, 173, 85, 0.4);
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 3px solid #f6ad55; background: #1a2233; 
+            flex-shrink: 0; margin-left: 20px; overflow: hidden;
         }
-        .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .logo { width: 100%; height: 100%; object-fit: cover; }
 
-        .header { color: #a0aec0; font-size: 12px; margin-bottom: 5px; }
-        .title { font-size: 24px; font-weight: bold; margin-bottom: 15px; }
+        .content { flex-grow: 1; text-align: right; }
+        .title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
         
         #status-box { 
-            padding: 8px 25px; border-radius: 25px; font-weight: bold; 
-            background-color: #f6ad55; color: #000; display: inline-block; margin-bottom: 25px; 
+            padding: 5px 15px; border-radius: 15px; font-weight: bold; 
+            background-color: #f6ad55; color: #000; display: inline-block; font-size: 14px;
         }
 
         .footer { 
-            background: #111827; padding: 15px; border-radius: 20px; 
-            display: flex; justify-content: space-between; direction: ltr;
+            background: #111827; padding: 10px; border-radius: 15px; 
+            display: flex; justify-content: space-around; margin-top: 15px; direction: ltr;
         }
-        .value { color: #f6ad55; font-size: 20px; font-weight: bold; display: block; }
+        .value { color: #f6ad55; font-size: 18px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -48,35 +42,21 @@
             <img src="https://raw.githubusercontent.com/la-mudarra/rsi-bot-card/main/IMG_6035.PNG" class="logo">
         </div>
         
-        <div class="header">بوت مؤشر لحظي</div>
-        <div class="title">مؤشر سهم SPX</div>
-        
-        <div id="status-box">سوق مستقر</div>
-        
-        <div class="footer">
-            <div style="text-align: right; direction: rtl;">
-                <small style="color: #a0aec0;">آخر تحديث</small><br>
-                <span id="date-value" style="font-weight: bold;">2026-05-30</span> 
-                <span id="time-value" style="font-weight: bold;">00:00</span>
-            </div>
-            <div style="text-align: right; direction: rtl;">
-                <small style="color: #a0aec0;">قيمة RSI</small><br>
-                <strong id="rsi-value" class="value">50</strong>
+        <div class="content">
+            <div class="title">مؤشر سهم SPX</div>
+            <div id="status-box">سوق مستقر</div>
+            
+            <div class="footer">
+                <div style="text-align: center;">
+                    <small style="color: #a0aec0; font-size: 10px;">آخر تحديث</small><br>
+                    <span id="date-time" style="font-size: 12px;">2026-05-30 00:00</span>
+                </div>
+                <div style="text-align: center;">
+                    <small style="color: #a0aec0; font-size: 10px;">قيمة RSI</small><br>
+                    <strong id="rsi-value" class="value">50</strong>
+                </div>
             </div>
         </div>
     </div>
-
-    <script>
-        // تحديث البيانات ديناميكياً
-        const params = new URLSearchParams(window.location.search);
-        const rsi = parseFloat(params.get('rsi') || 50);
-        document.getElementById('rsi-value').innerText = rsi;
-        document.getElementById('date-value').innerText = params.get('date') || "2026-05-30";
-        document.getElementById('time-value').innerText = params.get('time') || "00:00";
-
-        const statusBox = document.getElementById('status-box');
-        if (rsi > 70) { statusBox.style.backgroundColor = "#e53e3e"; statusBox.innerText = "تشبع شرائي (بيع)"; }
-        else if (rsi < 30) { statusBox.style.backgroundColor = "#48bb78"; statusBox.innerText = "فرصة شراء"; }
-    </script>
 </body>
 </html>
