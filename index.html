@@ -4,37 +4,31 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            margin: 0; height: 100vh; background-color: #0b0e14; 
-            display: flex; justify-content: center; align-items: center; 
-            font-family: 'Cairo', sans-serif; 
-        }
-        .card { 
-            background-color: #1a2233; color: white; padding: 25px; width: 400px; 
-            border-radius: 20px; text-align: center; border: 1px solid #334e68; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
-        }
-        .header { color: #a0aec0; font-size: 12px; margin-bottom: 10px; }
+        body { margin: 0; height: 100vh; background-color: #0b0e14; display: flex; justify-content: center; align-items: center; font-family: 'Cairo', sans-serif; }
+        .card { background-color: #1a2233; color: white; padding: 25px; width: 400px; border-radius: 20px; text-align: center; border: 1px solid #334e68; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        
+        /* هنا صغرنا حجم اللوجو ليصبح أيقونة أنيقة */
+        .logo { width: 80px; height: 80px; border-radius: 50%; border: 2px solid #63b3ed; margin-bottom: 10px; box-shadow: 0 0 10px rgba(99, 179, 237, 0.2); }
+        
+        .header { color: #a0aec0; font-size: 12px; margin-bottom: 5px; }
         .title { font-size: 24px; font-weight: bold; margin-bottom: 15px; }
-        #status-box { 
-            padding: 10px 20px; border-radius: 25px; font-weight: bold; 
-            display: inline-block; margin-bottom: 20px; color: #000; 
-        }
-        /* تعديل الـ Footer ليصبح LTR ليحكم ترتيب النصوص داخله */
-        .footer { 
-            display: flex; justify-content: space-between; background: #111827; 
-            padding: 15px; border-radius: 15px; direction: ltr;
-        }
+        #status-box { padding: 8px 20px; border-radius: 25px; font-weight: bold; display: inline-block; margin-bottom: 20px; color: #000; }
+        
+        /* الـ Footer مضبوط بنظام LTR لترتيب النصوص */
+        .footer { display: flex; justify-content: space-between; background: #111827; padding: 15px; border-radius: 15px; direction: ltr; }
         .value { color: #63b3ed; font-size: 20px; font-weight: bold; display: block; }
     </style>
 </head>
 <body>
     <div class="card">
+        <img src="https://raw.githubusercontent.com/YourUsername/RepoName/main/logo.png" alt="Logo" class="logo">
+        
         <div class="header">بوت مؤشر لحظي</div>
         <div class="title">
             <span>مؤشر سهم</span> 
             <span style="direction: ltr; unicode-bidi: isolate; margin-right: 8px;">SPX</span>
         </div>
+        
         <div id="status-box">...جاري التحليل</div>
         
         <div class="footer">
@@ -43,7 +37,6 @@
                 <span id="date-value" style="font-weight: bold;">--</span> 
                 <span id="time-value" style="font-weight: bold;">--</span>
             </div>
-            
             <div style="text-align: right; direction: rtl;">
                 <small style="color: #a0aec0;">قيمة RSI</small><br>
                 <strong id="rsi-value" class="value">--</strong>
@@ -55,7 +48,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             const params = new URLSearchParams(window.location.search);
             const rsi = parseFloat(params.get('rsi') || 50);
-            
             document.getElementById('rsi-value').innerText = rsi;
             document.getElementById('date-value').innerText = params.get('date') || "2026-05-30";
             document.getElementById('time-value').innerText = params.get('time') || "00:00";
