@@ -1,142 +1,223 @@
-```css
-* {
-    box-sizing: border-box;
-}
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
 
-html,
-body {
-    margin: 0;
-    width: 800px;
-    height: 800px;
-    overflow: hidden;
-    background: #0b0e14;
-    font-family: 'Cairo', sans-serif;
-}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-/* مساحة أمان حول التصميم */
-.wrapper {
-    width: 800px;
-    height: 800px;
+        html,
+        body {
+            margin: 0;
+            width: 800px;
+            height: 800px;
+            overflow: hidden;
+            background-color: #0b0e14;
+            font-family: 'Cairo', sans-serif;
+        }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
+        /* مساحة أمان تمنع قص اللوقو وحدود الكرت */
+        .wrapper {
+            width: 800px;
+            height: 800px;
 
-/* الكرت */
-.card {
-    width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    background: #1a2233;
-    color: white;
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
 
-    border: 3px solid #f6ad55;
-    border-radius: 40px;
+        .card {
+            background-color: #1a2233;
+            color: white;
 
-    text-align: center;
+            width: 600px;
 
-    padding: 85px 35px 30px;
+            border-radius: 40px;
+            text-align: center;
 
-    position: relative;
+            border: 3px solid #f6ad55;
 
-    box-shadow:
-        0 0 0 1px rgba(246,173,85,.15),
-        0 10px 40px rgba(0,0,0,.55);
-}
+            box-shadow:
+                0 0 0 1px rgba(246, 173, 85, 0.15),
+                0 10px 40px rgba(0, 0, 0, 0.55);
 
-/* اللوقو */
-.logo-frame {
-    width: 120px;
-    height: 120px;
+            position: relative;
 
-    border-radius: 50%;
-    border: 5px solid #f6ad55;
+            padding: 85px 35px 30px 35px;
+        }
 
-    background: #1a2233;
+        /* الشعار البارز */
+        .logo-frame {
+            width: 120px;
+            height: 120px;
 
-    padding: 4px;
+            border-radius: 50%;
+            border: 5px solid #f6ad55;
 
-    position: absolute;
+            background: #1a2233;
 
-    top: -60px;
-    left: 50%;
+            padding: 4px;
 
-    transform: translateX(-50%);
+            position: absolute;
+            top: -60px;
+            left: 50%;
 
-    box-shadow:
-        0 0 25px rgba(246,173,85,.45);
-}
+            transform: translateX(-50%);
 
-.logo {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-}
+            box-shadow: 0 0 25px rgba(246, 173, 85, 0.45);
+        }
 
-.header {
-    color: #a0aec0;
-    font-size: 18px;
-    margin-bottom: 12px;
-}
+        .logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
-.title {
-    font-size: 38px;
-    font-weight: 700;
-    margin-bottom: 28px;
-}
+        .header {
+            color: #a0aec0;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
 
-#status-box {
-    display: inline-block;
+        .title {
+            font-size: 38px;
+            font-weight: bold;
+            margin-bottom: 28px;
+            color: #ffffff;
+        }
 
-    background: #f6ad55;
-    color: #000;
+        #status-box {
+            padding: 12px 40px;
 
-    font-size: 22px;
-    font-weight: bold;
+            border-radius: 30px;
 
-    padding: 12px 40px;
+            font-size: 22px;
+            font-weight: bold;
 
-    border-radius: 30px;
+            background-color: #f6ad55;
+            color: #000;
 
-    margin-bottom: 35px;
-}
+            display: inline-block;
 
-.footer {
-    background: #111827;
+            margin-bottom: 35px;
+        }
 
-    padding: 25px;
+        .footer {
+            background: #111827;
 
-    border-radius: 25px;
+            padding: 25px;
 
-    display: flex;
-    justify-content: space-between;
+            border-radius: 25px;
 
-    direction: ltr;
-}
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-.footer small {
-    color: #a0aec0;
-    font-size: 14px;
-}
+            direction: ltr;
+        }
 
-.footer span {
-    font-size: 18px;
-    font-weight: bold;
-}
+        .footer small {
+            color: #a0aec0;
+            font-size: 14px;
+        }
 
-.value {
-    color: #f6ad55;
-    font-size: 32px;
-    font-weight: bold;
-}
+        .footer span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .value {
+            color: #f6ad55;
+            font-size: 32px;
+            font-weight: bold;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <div class="card">
+
+            <div class="logo-frame">
+                <img
+                    src="https://raw.githubusercontent.com/la-mudarra/rsi-bot-card/main/IMG_6035.PNG"
+                    class="logo"
+                    alt="Logo"
+                >
+            </div>
+
+            <div class="header">بوت مؤشر لحظي</div>
+
+            <div class="title">مؤشر سهم SPX</div>
+
+            <div id="status-box">سوق مستقر</div>
+
+            <div class="footer">
+
+                <div style="text-align: right; direction: rtl;">
+                    <small>آخر تحديث</small>
+                    <br>
+                    <span id="date-value">2026-05-30</span>
+                    <span id="time-value">00:00</span>
+                </div>
+
+                <div style="text-align: right; direction: rtl;">
+                    <small>قيمة RSI</small>
+                    <br>
+                    <strong id="rsi-value" class="value">50</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // تحديث البيانات ديناميكياً
+        const params = new URLSearchParams(window.location.search);
+
+        const rsi = parseFloat(params.get('rsi') || 50);
+
+        document.getElementById('rsi-value').innerText = rsi;
+
+        document.getElementById('date-value').innerText =
+            params.get('date') || "2026-05-30";
+
+        document.getElementById('time-value').innerText =
+            params.get('time') || "00:00";
+
+        const statusBox = document.getElementById('status-box');
+
+        if (rsi > 70) {
+            statusBox.style.backgroundColor = "#e53e3e";
+            statusBox.style.color = "#ffffff";
+            statusBox.innerText = "تشبع شرائي (بيع)";
+        } else if (rsi < 30) {
+            statusBox.style.backgroundColor = "#48bb78";
+            statusBox.style.color = "#ffffff";
+            statusBox.innerText = "فرصة شراء";
+        }
+    </script>
+
+</body>
+</html>
 ```
