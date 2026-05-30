@@ -2,44 +2,50 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; height: 100vh; background-color: #0b0e14; display: flex; justify-content: center; align-items: center; font-family: 'Cairo', sans-serif; }
+        /* دمج الخط محلياً لضمان السرعة القصوى في التحويل */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        
+        body { 
+            margin: 0; background-color: #0b0e14; 
+            display: flex; justify-content: center; align-items: center; 
+            font-family: 'Cairo', sans-serif; height: 100vh;
+        }
         
         .card { 
-            background-color: #1a2233; color: white; padding: 40px 25px 25px 25px; 
-            width: 400px; border-radius: 30px; text-align: center; 
-            border: 2px solid #f6ad55; /* الإطار الذهبي */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; margin-top: 50px;
+            background-color: #1a2233; color: white; padding: 40px 20px 20px 20px; 
+            width: 350px; border-radius: 30px; text-align: center; 
+            border: 2px solid #f6ad55; box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            position: relative; margin-top: 50px;
         }
 
-        /* الشعار الدائري البارز في الأعلى */
+        /* الشعار البارز */
         .logo-frame {
-            width: 120px; height: 120px; border-radius: 50%;
-            border: 4px solid #f6ad55; margin: -100px auto 20px auto;
-            background: #1a2233; padding: 3px; box-shadow: 0 0 20px rgba(246, 173, 85, 0.4);
+            width: 110px; height: 110px; border-radius: 50%;
+            border: 4px solid #f6ad55; margin: -90px auto 15px auto;
+            background: #1a2233; padding: 3px; box-shadow: 0 0 15px rgba(246, 173, 85, 0.4);
         }
         .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-        .header { color: #a0aec0; font-size: 13px; margin-bottom: 5px; }
-        .title { font-size: 26px; font-weight: bold; margin-bottom: 20px; color: #ffffff; }
+        .header { color: #a0aec0; font-size: 12px; margin-bottom: 5px; }
+        .title { font-size: 24px; font-weight: bold; margin-bottom: 15px; }
         
         #status-box { 
-            padding: 10px 30px; border-radius: 25px; font-weight: bold; 
-            background-color: #f6ad55; color: #000; display: inline-block; margin-bottom: 30px; 
+            padding: 8px 25px; border-radius: 25px; font-weight: bold; 
+            background-color: #f6ad55; color: #000; display: inline-block; margin-bottom: 25px; 
         }
 
         .footer { 
-            background: #111827; padding: 20px; border-radius: 20px; 
+            background: #111827; padding: 15px; border-radius: 20px; 
             display: flex; justify-content: space-between; direction: ltr;
         }
-        .value { color: #f6ad55; font-size: 22px; font-weight: bold; display: block; }
+        .value { color: #f6ad55; font-size: 20px; font-weight: bold; display: block; }
     </style>
 </head>
 <body>
     <div class="card">
         <div class="logo-frame">
-            <img src="https://raw.githubusercontent.com/la-mudarra/rsi-bot-card/main/IMG_6035.PNG" alt="Logo" class="logo">
+            <img src="https://raw.githubusercontent.com/la-mudarra/rsi-bot-card/main/IMG_6035.PNG" class="logo">
         </div>
         
         <div class="header">بوت مؤشر لحظي</div>
@@ -61,7 +67,7 @@
     </div>
 
     <script>
-        // السكربت يظل كما هو ليعمل مع بياناتك الديناميكية
+        // تحديث البيانات ديناميكياً
         const params = new URLSearchParams(window.location.search);
         const rsi = parseFloat(params.get('rsi') || 50);
         document.getElementById('rsi-value').innerText = rsi;
