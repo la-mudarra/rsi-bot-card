@@ -4,36 +4,41 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; height: 100vh; background-color: #0b0e14; display: flex; justify-content: center; align-items: center; font-family: 'Cairo', sans-serif; }
+        body { 
+            margin: 0; height: 100vh; background-color: #0b0e14; 
+            display: flex; justify-content: center; align-items: center; 
+            font-family: 'Cairo', sans-serif;
+        }
         
+        /* تم تقليل العرض قليلاً لزيادة مساحة الأمان في التيليجرام */
         .card { 
             background-color: #1a2233; color: white; padding: 40px 25px 25px 25px; 
-            width: 300px; border-radius: 30px; text-align: center; 
-            border: 2px solid #f6ad55; /* الإطار الذهبي */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; margin-top: 50px;
+            width: 340px; border-radius: 30px; text-align: center; 
+            border: 2px solid #f6ad55; box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            position: relative; margin-top: 50px;
         }
 
-        /* الشعار الدائري البارز في الأعلى */
+        /* تم تصغير اللوجو ووضعه بشكل أقرب للداخل لضمان عدم القص */
         .logo-frame {
-            width: 120px; height: 120px; border-radius: 50%;
-            border: 4px solid #f6ad55; margin: -100px auto 20px auto;
-            background: #1a2233; padding: 3px; box-shadow: 0 0 20px rgba(246, 173, 85, 0.4);
+            width: 100px; height: 100px; border-radius: 50%;
+            border: 3px solid #f6ad55; margin: -80px auto 20px auto;
+            background: #1a2233; padding: 3px; box-shadow: 0 0 15px rgba(246, 173, 85, 0.3);
         }
         .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-        .header { color: #a0aec0; font-size: 13px; margin-bottom: 5px; }
-        .title { font-size: 26px; font-weight: bold; margin-bottom: 20px; color: #ffffff; }
+        .header { color: #a0aec0; font-size: 12px; margin-bottom: 5px; }
+        .title { font-size: 24px; font-weight: bold; margin-bottom: 20px; color: #ffffff; }
         
         #status-box { 
-            padding: 10px 30px; border-radius: 25px; font-weight: bold; 
-            background-color: #f6ad55; color: #000; display: inline-block; margin-bottom: 30px; 
+            padding: 8px 25px; border-radius: 25px; font-weight: bold; 
+            background-color: #f6ad55; color: #000; display: inline-block; margin-bottom: 25px; 
         }
 
         .footer { 
-            background: #111827; padding: 20px; border-radius: 20px; 
+            background: #111827; padding: 15px; border-radius: 20px; 
             display: flex; justify-content: space-between; direction: ltr;
         }
-        .value { color: #f6ad55; font-size: 22px; font-weight: bold; display: block; }
+        .value { color: #f6ad55; font-size: 20px; font-weight: bold; display: block; }
     </style>
 </head>
 <body>
@@ -61,7 +66,6 @@
     </div>
 
     <script>
-        // السكربت يظل كما هو ليعمل مع بياناتك الديناميكية
         const params = new URLSearchParams(window.location.search);
         const rsi = parseFloat(params.get('rsi') || 50);
         document.getElementById('rsi-value').innerText = rsi;
