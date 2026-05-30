@@ -4,13 +4,28 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; height: 100vh; background-color: #0b0e14; display: flex; justify-content: center; align-items: center; font-family: 'Cairo', sans-serif; }
-        .card { background-color: #1a2233; color: white; padding: 25px; width: 400px; border-radius: 20px; text-align: center; border: 1px solid #334e68; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
+        body { 
+            margin: 0; height: 100vh; background-color: #0b0e14; 
+            display: flex; justify-content: center; align-items: center; 
+            font-family: 'Cairo', sans-serif; 
+        }
+        .card { 
+            background-color: #1a2233; color: white; padding: 25px; width: 400px; 
+            border-radius: 20px; text-align: center; border: 1px solid #334e68; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+        }
         .header { color: #a0aec0; font-size: 12px; margin-bottom: 10px; }
         .title { font-size: 24px; font-weight: bold; margin-bottom: 15px; }
-        #status-box { padding: 10px 20px; border-radius: 25px; font-weight: bold; display: inline-block; margin-bottom: 20px; color: #000; }
-        .footer { display: flex; justify-content: space-between; background: #111827; padding: 15px; border-radius: 15px; text-align: right; }
-        .value { color: #63b3ed; font-size: 20px; font-weight: bold; display: inline-block; unicode-bidi: isolate; direction: ltr; }
+        #status-box { 
+            padding: 10px 20px; border-radius: 25px; font-weight: bold; 
+            display: inline-block; margin-bottom: 20px; color: #000; 
+        }
+        /* تعديل الـ Footer ليصبح LTR ليحكم ترتيب النصوص داخله */
+        .footer { 
+            display: flex; justify-content: space-between; background: #111827; 
+            padding: 15px; border-radius: 15px; direction: ltr;
+        }
+        .value { color: #63b3ed; font-size: 20px; font-weight: bold; display: block; }
     </style>
 </head>
 <body>
@@ -21,27 +36,47 @@
             <span style="direction: ltr; unicode-bidi: isolate; margin-right: 8px;">SPX</span>
         </div>
         <div id="status-box">...جاري التحليل</div>
+        
         <div class="footer">
-            <div style="text-align: right;">
+            <div style="text-align: right; direction: rtl;">
                 <small style="color: #a0aec0;">آخر تحديث</small><br>
-                <strong id="date-value">--</strong> <strong id="time-value">--</strong>
+                <span id="date-value" style="font-weight: bold;">--</span> 
+                <span id="time-value" style="font-weight: bold;">--</span>
             </div>
-            <div style="text-align: right;">
-                <small style="color: #a0aec0; display: flex; justify-content: flex-end; align-items: center; gap: 5px;">
-                    <span>قيمة</span>
-                    <span style="direction: ltr; unicode-bidi: isolate;">RSI</span>
-                </small>
+            
+            <div style="text-align: right; direction: rtl;">
+                <small style="color: #a0aec0;">قيمة RSI</small><br>
                 <strong id="rsi-value" class="value">--</strong>
             </div>
         </div>
     </div>
+
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const rsi = params.get('rsi') || 50;
-        document.getElementById('rsi-value').innerText = rsi;
-        document.getElementById('date-value').innerText = params.get('date') || "2026-05-30";
-        document.getElementById('time-value').innerText = params.get('time') || "00:00";
-        // تحديث لون الحالة... (الكود المعتاد)
+        document.addEventListener("DOMContentLoaded", function() {
+            const params = new URLSearchParams(window.location.search);
+            const rsi = parseFloat(params.get('rsi') || 50);
+            
+            document.getElementById('rsi-value').innerText = rsi;
+            document.getElementById('date-value').innerText = params.get('date') || "2026-05-30";
+            document.getElementById('time-value').innerText = params.get('time') || "00:00";
+
+            const statusBox = document.getElementById('status-box');
+            const rsiEl = document.getElementById('rsi-value');
+
+            if (rsi > 70) {
+                statusBox.style.backgroundColor = "#e53e3e";
+                statusBox.innerText = "تشبع شرائي (بيع)";
+                rsiEl.style.color = "#e53e3e";
+            } else if (rsi < 30) {
+                statusBox.style.backgroundColor = "#48bb78";
+                statusBox.innerText = "فرصة شراء";
+                rsiEl.style.color = "#48bb78";
+            } else {
+                statusBox.style.backgroundColor = "#f6ad55";
+                statusBox.innerText = "سوق مستقر";
+                rsiEl.style.color = "#f6ad55";
+            }
+        });
     </script>
 </body>
 </html>
