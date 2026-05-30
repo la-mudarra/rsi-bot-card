@@ -3,36 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { margin: 0; background-color: #0b0e14; display: flex; justify-content: center; align-items: center; font-family: sans-serif; height: 100vh; }
+        body { 
+            margin: 0; background-color: #0b0e14; 
+            display: flex; justify-content: center; align-items: center; 
+            height: 100vh; padding: 50px; /* مساحة أمان للتيليجرام */
+        }
         
-        /* كرت أفقي: عرض أكبر، ارتفاع أقل */
+        /* الكرت العمودي اللي تحبه */
         .card { 
-            background-color: #1a2233; color: white; padding: 20px; 
-            width: 500px; height: 220px; border-radius: 20px; 
-            border: 2px solid #f6ad55; box-shadow: 0 5px 20px rgba(0,0,0,0.5); 
-            display: flex; align-items: center; position: relative;
+            background-color: #1a2233; color: white; padding: 40px 25px 25px 25px; 
+            width: 340px; border-radius: 30px; text-align: center; 
+            border: 2px solid #f6ad55; box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+            position: relative; margin-top: 50px;
         }
 
-        /* الشعار على الجانب */
         .logo-frame {
-            width: 120px; height: 120px; border-radius: 50%;
-            border: 3px solid #f6ad55; background: #1a2233; 
-            flex-shrink: 0; margin-left: 20px; overflow: hidden;
+            width: 100px; height: 100px; border-radius: 50%;
+            border: 3px solid #f6ad55; margin: -90px auto 15px auto;
+            background: #0b0e14; padding: 3px;
         }
-        .logo { width: 100%; height: 100%; object-fit: cover; }
+        .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-        .content { flex-grow: 1; text-align: right; }
-        .title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
-        
-        #status-box { 
-            padding: 5px 15px; border-radius: 15px; font-weight: bold; 
-            background-color: #f6ad55; color: #000; display: inline-block; font-size: 14px;
-        }
-
-        .footer { 
-            background: #111827; padding: 10px; border-radius: 15px; 
-            display: flex; justify-content: space-around; margin-top: 15px; direction: ltr;
-        }
+        .title { font-size: 22px; font-weight: bold; margin-bottom: 15px; }
+        #status-box { padding: 6px 20px; border-radius: 20px; font-weight: bold; background: #f6ad55; color: #000; margin-bottom: 20px; display: inline-block; }
+        .footer { background: #111827; padding: 12px; border-radius: 15px; display: flex; justify-content: space-between; direction: ltr; }
         .value { color: #f6ad55; font-size: 18px; font-weight: bold; }
     </style>
 </head>
@@ -41,20 +35,16 @@
         <div class="logo-frame">
             <img src="https://raw.githubusercontent.com/la-mudarra/rsi-bot-card/main/IMG_6035.PNG" class="logo">
         </div>
-        
-        <div class="content">
-            <div class="title">مؤشر سهم SPX</div>
-            <div id="status-box">سوق مستقر</div>
-            
-            <div class="footer">
-                <div style="text-align: center;">
-                    <small style="color: #a0aec0; font-size: 10px;">آخر تحديث</small><br>
-                    <span id="date-time" style="font-size: 12px;">2026-05-30 00:00</span>
-                </div>
-                <div style="text-align: center;">
-                    <small style="color: #a0aec0; font-size: 10px;">قيمة RSI</small><br>
-                    <strong id="rsi-value" class="value">50</strong>
-                </div>
+        <div class="title">مؤشر سهم SPX</div>
+        <div id="status-box">سوق مستقر</div>
+        <div class="footer">
+            <div style="text-align: right;">
+                <small style="color: #a0aec0; font-size: 10px;">آخر تحديث</small><br>
+                <span style="font-weight: bold; font-size: 14px;">2026-05-30 00:00</span>
+            </div>
+            <div style="text-align: right;">
+                <small style="color: #a0aec0; font-size: 10px;">قيمة RSI</small><br>
+                <strong class="value">50</strong>
             </div>
         </div>
     </div>
