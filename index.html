@@ -5,91 +5,72 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; height: 100vh; background-color: #0b0e14; display: flex; justify-content: center; align-items: center; font-family: 'Cairo', sans-serif; }
-        .card { background-color: #1a2233; color: white; padding: 25px; width: 400px; border-radius: 20px; text-align: center; border: 1px solid #334e68; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
         
-        /* تنسيق اللوجو المجسم والمضاء */
-        .logo-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 15px auto;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .logo {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 3px solid #f6ad55; /* لون ذهبي رفيع مطابق النموذج */
-            box-shadow: 0 0 20px rgba(99, 179, 237, 0.4); /* توهج أزرق نيون */
-            object-fit: cover;
+        .card { 
+            background-color: #1a2233; color: white; padding: 40px 25px 25px 25px; 
+            width: 400px; border-radius: 30px; text-align: center; 
+            border: 2px solid #f6ad55; /* الإطار الذهبي */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; margin-top: 50px;
         }
 
-        .header { color: #a0aec0; font-size: 12px; margin-bottom: 5px; }
-        .title { font-size: 24px; font-weight: bold; margin-bottom: 15px; }
+        /* الشعار الدائري البارز في الأعلى */
+        .logo-frame {
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 4px solid #f6ad55; margin: -100px auto 20px auto;
+            background: #1a2233; padding: 3px; box-shadow: 0 0 20px rgba(246, 173, 85, 0.4);
+        }
+        .logo { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+
+        .header { color: #a0aec0; font-size: 13px; margin-bottom: 5px; }
+        .title { font-size: 26px; font-weight: bold; margin-bottom: 20px; color: #ffffff; }
         
-        #status-box { padding: 10px 20px; border-radius: 25px; font-weight: bold; display: inline-block; margin-bottom: 20px; color: #000; }
-        
-        /* الـ Footer مضبوط بنظام LTR لترتيب النصوص */
-        .footer { display: flex; justify-content: space-between; background: #111827; padding: 15px; border-radius: 15px; direction: ltr; margin-top: auto; }
-        .footer-item { text-align: right; direction: rtl; flex: 1; }
-        .value { color: #63b3ed; font-size: 20px; font-weight: bold; display: block; }
+        #status-box { 
+            padding: 10px 30px; border-radius: 25px; font-weight: bold; 
+            background-color: #f6ad55; color: #000; display: inline-block; margin-bottom: 30px; 
+        }
+
+        .footer { 
+            background: #111827; padding: 20px; border-radius: 20px; 
+            display: flex; justify-content: space-between; direction: ltr;
+        }
+        .value { color: #f6ad55; font-size: 22px; font-weight: bold; display: block; }
     </style>
 </head>
 <body>
     <div class="card">
-        <div class="logo-container">
-            <img src="https://raw.githubusercontent.com/la-mudarra/rsi-bot-card/main/IMG_6035.PNG?v=3" alt="Dimensional Logo" class="logo">
+        <div class="logo-frame">
+            <img src="https://raw.githubusercontent.com/la-mudarra/rsi-bot-card/main/IMG_6035.PNG" alt="Logo" class="logo">
         </div>
         
         <div class="header">بوت مؤشر لحظي</div>
-        <div class="title">
-            <span>مؤشر سهم</span> 
-            <span style="direction: ltr; unicode-bidi: isolate; margin-right: 8px;">SPX</span>
-        </div>
+        <div class="title">مؤشر سهم SPX</div>
         
-        <div id="status-box">...جاري التحليل</div>
+        <div id="status-box">سوق مستقر</div>
         
         <div class="footer">
-            <div class="footer-item">
+            <div style="text-align: right; direction: rtl;">
                 <small style="color: #a0aec0;">آخر تحديث</small><br>
-                <span id="date-value" style="font-weight: bold;">--</span> 
-                <span id="time-value" style="font-weight: bold;">--</span>
+                <span id="date-value" style="font-weight: bold;">2026-05-30</span> 
+                <span id="time-value" style="font-weight: bold;">00:00</span>
             </div>
-            <div class="footer-item">
+            <div style="text-align: right; direction: rtl;">
                 <small style="color: #a0aec0;">قيمة RSI</small><br>
-                <strong id="rsi-value" class="value">--</strong>
+                <strong id="rsi-value" class="value">50</strong>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const params = new URLSearchParams(window.location.search);
-            const rsi = parseFloat(params.get('rsi') || 50);
-            document.getElementById('rsi-value').innerText = rsi;
-            document.getElementById('date-value').innerText = params.get('date') || "2026-05-30";
-            document.getElementById('time-value').innerText = params.get('time') || "00:00";
+        // السكربت يظل كما هو ليعمل مع بياناتك الديناميكية
+        const params = new URLSearchParams(window.location.search);
+        const rsi = parseFloat(params.get('rsi') || 50);
+        document.getElementById('rsi-value').innerText = rsi;
+        document.getElementById('date-value').innerText = params.get('date') || "2026-05-30";
+        document.getElementById('time-value').innerText = params.get('time') || "00:00";
 
-            const statusBox = document.getElementById('status-box');
-            const rsiEl = document.getElementById('rsi-value');
-
-            if (rsi > 70) {
-                statusBox.style.backgroundColor = "#e53e3e";
-                statusBox.innerText = "تشبع شرائي (بيع)";
-                rsiEl.style.color = "#e53e3e";
-            } else if (rsi < 30) {
-                statusBox.style.backgroundColor = "#48bb78";
-                statusBox.innerText = "فرصة شراء";
-                rsiEl.style.color = "#48bb78";
-            } else {
-                statusBox.style.backgroundColor = "#f6ad55";
-                statusBox.innerText = "سوق مستقر";
-                rsiEl.style.color = "#f6ad55";
-            }
-        });
+        const statusBox = document.getElementById('status-box');
+        if (rsi > 70) { statusBox.style.backgroundColor = "#e53e3e"; statusBox.innerText = "تشبع شرائي (بيع)"; }
+        else if (rsi < 30) { statusBox.style.backgroundColor = "#48bb78"; statusBox.innerText = "فرصة شراء"; }
     </script>
 </body>
 </html>
