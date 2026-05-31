@@ -1,0 +1,147 @@
+const quotes = $input.item.json.chart.result[0].indicators.quote[0].close;
+
+const prices = quotes.filter(p => p !== null && p !== undefined);
+
+const lastPrice = prices[prices.length - 1];
+
+function calculateRSI(data, period = 14) {
+    if (data.length < period + 1) {
+        return null;
+    }
+
+    let gains = 0;
+    let losses = 0;
+
+    const recentData = data.slice(-(period + 1));
+
+    for (let i = 1; i < recentData.length; i++) {
+        const diff = recentData[i] - recentData[i - 1];
+
+        if (diff > 0) {
+            gains += diff;
+        } else {
+            losses += Math.abs(diff);
+        }
+    }
+
+    const avgGain = gains / period;
+    const avgLoss = losses / period;
+
+    if (avgLoss === 0) {
+        return 100;
+    }
+
+    const rs = avgGain / avgLoss;
+    return 100 - (100 / (1 + rs));
+}
+
+const rsiValue = calculateRSI(prices, 14);
+
+let signal = "انتظار";
+let color = "#ffb703";
+
+if (rsiValue <= 35) {
+    signal = "BUY CALL";
+    color = "#00f5d4";
+} else if (rsiValue >= 65) {
+    signal = "BUY PUT";
+    color = "#ff4d6d";
+}
+
+return {
+    symbol: "SPY",
+    price: Number(lastPrice.toFixed(2)),
+
+    rsi: Number(rsiValue.toFixed(2)),
+    rsi_text: rsiValue.toFixed(2),
+
+    market_signal: signal,
+    signal_color: color,
+
+    update_date: new Date().toLocaleDateString('en-US', {
+        timeZone: 'Asia/Riyadh',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit'
+    }),
+
+    update_time: new Date().toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Riyadh',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    })
+};const quotes = $input.item.json.chart.result[0].indicators.quote[0].close;
+
+const prices = quotes.filter(p => p !== null && p !== undefined);
+
+const lastPrice = prices[prices.length - 1];
+
+function calculateRSI(data, period = 14) {
+    if (data.length < period + 1) {
+        return null;
+    }
+
+    let gains = 0;
+    let losses = 0;
+
+    const recentData = data.slice(-(period + 1));
+
+    for (let i = 1; i < recentData.length; i++) {
+        const diff = recentData[i] - recentData[i - 1];
+
+        if (diff > 0) {
+            gains += diff;
+        } else {
+            losses += Math.abs(diff);
+        }
+    }
+
+    const avgGain = gains / period;
+    const avgLoss = losses / period;
+
+    if (avgLoss === 0) {
+        return 100;
+    }
+
+    const rs = avgGain / avgLoss;
+    return 100 - (100 / (1 + rs));
+}
+
+const rsiValue = calculateRSI(prices, 14);
+
+let signal = "انتظار";
+let color = "#ffb703";
+
+if (rsiValue <= 35) {
+    signal = "BUY CALL";
+    color = "#00f5d4";
+} else if (rsiValue >= 65) {
+    signal = "BUY PUT";
+    color = "#ff4d6d";
+}
+
+return {
+    symbol: "SPY",
+    price: Number(lastPrice.toFixed(2)),
+
+    rsi: Number(rsiValue.toFixed(2)),
+    rsi_text: rsiValue.toFixed(2),
+
+    market_signal: signal,
+    signal_color: color,
+
+    update_date: new Date().toLocaleDateString('en-US', {
+        timeZone: 'Asia/Riyadh',
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit'
+    }),
+
+    update_time: new Date().toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Riyadh',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    })
+};
