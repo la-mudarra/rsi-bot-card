@@ -1,0 +1,26 @@
+const data = $getWorkflowStaticData('global');
+
+const rsi = Number($json.rsi);
+
+let currentState = "NORMAL";
+
+if (rsi >= 65) {
+  currentState = "OVERBOUGHT";
+} else if (rsi <= 35) {
+  currentState = "OVERSOLD";
+}
+
+const previousState = data.lastRsiState || null;
+
+const shouldSend = currentState !== previousState;
+
+data.lastRsiState = currentState;
+
+return {
+  json: {
+    ...$json,
+    previous_state: previousState,
+    current_state: currentState,
+    should_send: shouldSend
+  }
+};
