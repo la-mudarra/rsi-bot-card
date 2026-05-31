@@ -1,0 +1,32 @@
+const rsi = $('Calculate_RSI').item.json.rsi;
+const date = $('Calculate_RSI').item.json.update_date;
+const time = $('Calculate_RSI').item.json.update_time;
+
+const randomCacheBuster = Math.floor(Math.random() * 1000000);
+
+const targetUrl =
+  "https://la-mudarra.github.io/rsi-bot-card/?" +
+  "rsi=" + encodeURIComponent(rsi) +
+  "&date=" + encodeURIComponent(date) +
+  "&time=" + encodeURIComponent(time) +
+  "&cb=" + randomCacheBuster;
+
+const finalScreenshotUrl =
+  "https://api.screenshotone.com/take" +
+  "?access_key=حط المفتاح الخاص بك" +
+  "&url=" + encodeURIComponent(targetUrl) +
+  "&viewport_width=800" +
+  "&viewport_height=800" +
+  "&device_scale_factor=2" +
+  "&full_page=false" +
+  "&format=png";
+
+return {
+  json: {
+    ...$json,
+    rsi,
+    update_date: date,
+    update_time: time,
+    screenshot_url: finalScreenshotUrl
+  }
+};
